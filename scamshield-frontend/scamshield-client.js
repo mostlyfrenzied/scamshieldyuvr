@@ -11,8 +11,8 @@
       else localStorage.removeItem("scamshield_token");
     }
     async request(path, options = {}) {
-      if (!this.baseUrl || this.baseUrl.includes("YOUR-RENDER-SERVICE")) {
-        throw new Error("Set your Render API URL in js/config.js before using live scans.");
+      if (this.baseUrl && this.baseUrl.includes("YOUR-RENDER-SERVICE")) {
+        throw new Error("Set your API URL in js/config.js before using live scans.");
       }
       const headers = { "Content-Type": "application/json", ...(options.headers || {}) };
       if (this.token) headers.Authorization = `Bearer ${this.token}`;
